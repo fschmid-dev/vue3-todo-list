@@ -1,0 +1,27 @@
+.todo-item {
+  display: grid;
+  grid-template-areas:
+          "Priority Text Actions"
+          "Finished Text Actions";
+  grid-template-columns: max-content 1fr max-content;
+  grid-template-rows: repeat(2, max-content);
+  gap: .5rem;
+}
+
+.todo-item__priority {
+  grid-area: Priority;
+}
+
+.todo-item__finished {
+  grid-area: Finished;
+  width: 2em;
+  overflow: hidden;
+}
+
+.todo-item__text {
+  grid-area: Text;
+}
+
+.todo-item__actions {
+  grid-area: Actions;
+}
