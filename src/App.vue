@@ -33,7 +33,7 @@ function sortToDosByCreatedAt(a, b) {
 function showNewToDoModal() {
   Swal.fire({
     title: 'Create new To-Do',
-    html: form,
+    html: 'Enter the new To-Do',
     showConfirmButton: true,
     confirmButtonText: 'Create',
     confirmButtonColor: 'var(--bs-success)',
@@ -42,6 +42,11 @@ function showNewToDoModal() {
     cancelButtonText: 'Cancel',
     cancelButtonColor: 'var(--bs-danger)',
     cancelButtonAriaLabel: 'Cancel',
+    input: 'text',
+    inputValue: '',
+    inputPlaceholder: 'Enter the To-Do Task',
+    inputAutoTrim: true,
+    inputAutoFocus: true,
     preConfirm: (text) => {
       if (!text) {
         return Swal.showValidationMessage('To-Do can\'t be empty!')
@@ -169,7 +174,9 @@ watch(toDos, () => {
 
 onMounted(() => {
   localforage.getItem(localforage_key).then(savedToDos => {
-    toDos.value = savedToDos
+    if (savedToDos) {
+      toDos.value = savedToDos
+    }
     console.debug('To-Dos loaded!', savedToDos)
   }).catch(err => {
     console.error('Error loading To-Dos from storage!', err);
